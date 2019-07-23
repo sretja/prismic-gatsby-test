@@ -1,4 +1,4 @@
 module.exports = {
-  apiEndpoint: 'https://your-repo-name.prismic.io/graphql',
+  apiEndpoint: 'https://mad-example.prismic.io/graphql',
   // accessToken: '###########',
 };
