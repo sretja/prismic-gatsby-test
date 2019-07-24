@@ -29,17 +29,25 @@ class Layout extends React.Component {
     const { data } = this.props;
     const layoutData = data.prismic.allLayouts.edges[0].node;
 
-    const headerItems = layoutData.header_nav_items.map((item) =>
-      <Link key={item.link._meta.id} className="header-nav-link" to={linkResolver(item.link._meta)}>
-        {item.text}
-      </Link>
-    )
+    const headerItems = layoutData.header_nav_items.map((item) => {
+      if (item.link && item.link._meta) {
+        return (
+          <Link key={item.link._meta.id} className="header-nav-link" to={linkResolver(item.link._meta)}>
+            {item.text}
+          </Link>
+        )
+      }
+    })
 
-    const navItems = layoutData.footer_nav_items.map((item) =>
-      <Link key={item.link._meta.id} className="footer-nav-link" to={linkResolver(item.link._meta)}>
-        {item.text}
-      </Link>
-    )
+    const navItems = layoutData.footer_nav_items.map((item) => {
+      if (item.link && item.link._meta) {
+        return (
+          <Link key={item.link._meta.id} className="footer-nav-link" to={linkResolver(item.link._meta)}>
+            {item.text}
+          </Link>
+        )
+      }
+    })
 
     const socialItems = layoutData.footer_social_items.map((item, index) => {
       return (
