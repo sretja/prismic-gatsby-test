@@ -134,6 +134,13 @@ export default props => (
                         type
                       }
                     }
+                    ... on PRISMIC_Landingpage{
+                      _meta{
+                        uid
+                        id
+                        type
+                      }
+                    }
                   }
                 }
                 footer_nav_items{

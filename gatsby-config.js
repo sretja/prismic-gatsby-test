@@ -26,6 +26,11 @@ module.exports = {
           match: '/blog/:uid',
           path: '/blogpost',
           component: require.resolve('./src/templates/blogPost.js')
+        }, {
+          type: 'Landingpage',
+          match: '/landingpage/:uid',
+          path: '/landingpage',
+          component: require.resolve('./src/templates/landingpage.js')
         }]
       }
     },

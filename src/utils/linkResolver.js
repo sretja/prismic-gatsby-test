@@ -9,6 +9,9 @@ exports.linkResolver = function linkResolver(doc) {
   if (doc.type === 'product') {
     return '/products/' + doc.uid;
   }
+  if (doc.type === 'landingpage') {
+    return '/landingpage/' + doc.uid;
+  }
   if (doc.type === 'blog_home') {
     return '/blog';
   }

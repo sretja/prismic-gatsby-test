@@ -1,28 +1,24 @@
 import React from 'react'
-import { RichText } from 'prismic-reactjs'
-import { linkResolver } from '../utils/linkResolver'
-import { graphql } from 'gatsby';
+import { Helmet } from 'react-helmet'
 import { CTABanner, FeaturedItems, NumberedItems, Separator, TextBlock } from '../components/slices'
-
+import { linkResolver } from '../utils/linkResolver'
+import { RichText } from 'prismic-reactjs'
 import Layout from '../components/layouts'
 
 export const query = graphql`
-{
+query LandingpageQuery($uid: String) {
   prismic{
-    allHomepages(uid:null){
+    allLandingpages(uid: $uid){
       edges{
         node{
           _meta{
             uid
             id
-            type
           }
           title
-          banner_image
-          banner_text
           body {
             __typename
-            ... on PRISMIC_HomepageBodyCta_banner {
+            ... on PRISMIC_LandingpageBodyCta_banner {
               type
               primary {
                 image_banner
@@ -37,10 +33,10 @@ export const query = graphql`
                 }
               }
             }
-            ... on PRISMIC_HomepageBodySeparator {
+            ... on PRISMIC_LandingpageBodySeparator {
               type
             }
-            ... on PRISMIC_HomepageBodyText_block {
+            ... on PRISMIC_LandingpageBodyText_block {
               type
               primary {
                 title1
@@ -52,8 +48,7 @@ export const query = graphql`
       }
     }
   }
-}
-`
+}`
 
 const RenderSlices = ({ slices }) => {
   return slices.map((slice, index) => {
@@ -94,15 +89,6 @@ const RenderBody = ({ home }) => (
       </div>
     </header>
 
-    <section className="homepage-banner">
-      <img className="homepage-banner-image" src={home.banner_image.url} alt={home.banner_image.alt} />
-      <div className="homepage-banner-box-wrapper">
-        <div className="homepage-banner-box">
-        {RichText.render(home.banner_text, linkResolver)}
-        </div>
-      </div>
-    </section>
-
     <div className="homepage-slices-wrapper">
       <RenderSlices slices={home.body} />
     </div>
@@ -111,9 +97,9 @@ const RenderBody = ({ home }) => (
 
 export default ({ data }) => {
   // Required check for no data being returned
-  const doc = data.prismic.allHomepages.edges.slice(0,1).pop();
+  const doc = data.prismic.allLandingpages.edges.slice(0,1).pop();
   if(!doc) return null;
-  
+
   return(
     <Layout>
       <RenderBody home={doc.node} />
