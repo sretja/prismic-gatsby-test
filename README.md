@@ -8,7 +8,7 @@ It showcases how a website for a coffee store could be designed and built, as we
 
 Based on the gatsby default starter and uses the [gatsby-source-prismic-graphql](https://github.com/birkir/gatsby-source-prismic-graphql) plugin for creating pages that can be drafted and previewed. Refer to its documentation for more details on how to use it.
 
-A deployment demo is available in Netlify: https://https://mad-coffee.netlify.com
+A deployment demo is available in Netlify: https://mad-coffee.netlify.com.
 
 ### Running locally 
 ```
